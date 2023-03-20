@@ -19,21 +19,24 @@ namespace Ordering.Infrastructure.EntityConfigurations
                 .UsePropertyAccessMode(PropertyAccessMode.Field)
                 .HasColumnName("Number")
                 .HasColumnType("nvarchar(max)")
-                .IsRequired(true);
+                .IsRequired(true)
+                .IsConcurrencyToken(true);
 
             builder
                 .Property<DateTime>("date")
                 .UsePropertyAccessMode(PropertyAccessMode.Field)
                 .HasColumnName("Date")
                 .HasColumnType("datetime2(7)")
-                .IsRequired(true);
+                .IsRequired(true)
+                .IsConcurrencyToken(true);
 
             builder
                 .Property<int>("providerId")
                 .UsePropertyAccessMode(PropertyAccessMode.Field)
                 .HasColumnName("ProviderId")
                 .HasColumnType("int")
-                .IsRequired(true);
+                .IsRequired(true)
+                .IsConcurrencyToken(true);
 
             var itemsNavigation = builder.Metadata.FindNavigation(nameof(Order.OrderItems));
             itemsNavigation?.SetPropertyAccessMode(PropertyAccessMode.Field);

@@ -19,7 +19,8 @@ namespace Ordering.Infrastructure.EntityConfigurations
                 .UsePropertyAccessMode(PropertyAccessMode.Field)
                 .HasColumnName("Name")
                 .HasColumnType("nvarchar(max)")
-                .IsRequired(true);
+                .IsRequired(true)
+                .IsConcurrencyToken(true);
 
             builder
                 .Property<decimal>("quantity")
@@ -27,14 +28,16 @@ namespace Ordering.Infrastructure.EntityConfigurations
                 .HasColumnName("Quantity")
                 .HasColumnType("decimal(18,3)")
                 .HasPrecision(18, 3)
-                .IsRequired(true);
+                .IsRequired(true)
+                .IsConcurrencyToken(true);
 
             builder
                 .Property<string?>("unit")
                 .UsePropertyAccessMode(PropertyAccessMode.Field)
                 .HasColumnName("Unit")
                 .HasColumnType("nvarchar(max)")
-                .IsRequired(true);
+                .IsRequired(true)
+                .IsConcurrencyToken(true);
 
             builder
                 .Property<int>("orderId")
