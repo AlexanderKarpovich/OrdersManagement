@@ -7,7 +7,7 @@ import ReadOrderPage from "./components/pages/read/ReadOrderPage";
 function App() {
   return (
     <BrowserRouter>
-      <div className="w-screen bg-black text-white text-end p-2">
+      <div className="w-full bg-black text-white text-end p-2">
         <div className="text-lg p-2 flex justify-end">
           <NavLink
             to='/'
