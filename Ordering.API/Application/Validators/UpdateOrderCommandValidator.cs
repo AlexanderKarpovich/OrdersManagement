@@ -4,6 +4,9 @@ namespace Ordering.API.Application.Validators
     {
         public UpdateOrderCommandValidator(OrderNumberUniquenessChecker checker)
         {
+            RuleFor(command => command.OrderId).NotEmpty();
+            RuleFor(command => command.OrderId).Must(i => i > 0);
+
             RuleFor(command => command.Number).NotEmpty();
             RuleFor(command => command.Date).NotEmpty();
             RuleFor(command => command.ProviderId).NotEmpty();
@@ -17,7 +20,7 @@ namespace Ordering.API.Application.Validators
                 .WithMessage("Order item quantity should be greater than zero");
 
             RuleFor(command => command)
-                .Must((c) => checker.IsUniqueForProvider(c.Number!, c.ProviderId))
+                .Must((c) => checker.IsUniqueForProvider(c.Number!, c.ProviderId, c.OrderId))
                 .WithMessage("The order number must be unique for the provider");  
 
             RuleFor(command => command)
