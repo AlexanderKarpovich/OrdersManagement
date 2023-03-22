@@ -15,8 +15,8 @@ namespace Ordering.API.Application.Queries
             connection.Open();
 
             const string sql = 
-                @"SELECT p.[Id], p.[Name] 
-                    FROM [ordering].[providers] p";
+                @"SELECT DISTINCT * 
+                    FROM [ordering].[providers]";
 
             return await connection.QueryAsync<ProviderSummary>(sql);
         }
