@@ -2,6 +2,7 @@ import { BrowserRouter, NavLink, Navigate, Route, Routes } from "react-router-do
 import OrdersPage from "./components/pages/home/OrdersPage";
 import ProvidersPage from "./components/pages/providers/ProvidersPage";
 import CreateOrderPage from './components/pages/create/CreateOrderPage';
+import ReadOrderPage from "./components/pages/read/ReadOrderPage";
 
 function App() {
   return (
@@ -45,7 +46,7 @@ function App() {
         <Route path={'/'} element={<OrdersPage />} />
         <Route path={'/orders'} element={<OrdersPage />} />
         <Route path={'/providers'} element={<ProvidersPage />} />
-        <Route path={'/orders/:id'} element={<OrdersPage />} />
+        <Route path={'/orders/:id'} element={<ReadOrderPage />} />
         <Route path={'/orders/:id/edit'} element={<CreateOrderPage />} />
         <Route path={'/orders/create'} element={<CreateOrderPage />} />
         <Route path="*" element={<Navigate to="/" />} />
