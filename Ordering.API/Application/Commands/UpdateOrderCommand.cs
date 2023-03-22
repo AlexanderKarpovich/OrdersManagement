@@ -8,7 +8,7 @@ namespace Ordering.API.Application.Commands
             this.OrderItems = new List<OrderItemDto>();
         }
 
-        public UpdateOrderCommand(int orderId, string number, DateTime date, int providerId, List<OrderItemDto> orderItems)
+        public UpdateOrderCommand(int orderId, string number, DateTime date, int providerId, IEnumerable<OrderItemDto> orderItems)
             : this()
         {
             this.OrderId = orderId;
@@ -31,6 +31,6 @@ namespace Ordering.API.Application.Commands
         public int ProviderId { get; init; }
 
         [DataMember]
-        public IEnumerable<OrderItemDto> OrderItems { get; private set; }
+        public IEnumerable<OrderItemDto> OrderItems { get; init; }
     }
 }
