@@ -23,7 +23,18 @@ namespace Ordering.API.Controllers
 
             var orders = (await mediator.Send(new GetOrdersQuery())).AsQueryable();
 
+            logger.LogInformation("---> Filter values: {startDate}, {endDate}, {number}, {providerId}", startDate, endDate, number, providerId);
+
             return FilterOrders(orders, startDate, endDate, number, providerId);
+        }
+
+        [HttpGet("numbers")]
+        [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status200OK, "application/json")]
+        public async Task<IEnumerable<string>> GetOrdersNumbersAsync()
+        {
+            logger.LogInformation("---> Sending query {query}...", typeof(GetOrdersNumbersQuery));
+
+            return await mediator.Send(new GetOrdersNumbersQuery());
         }
 
         [HttpGet("{orderId:int}")]
@@ -72,11 +83,60 @@ namespace Ordering.API.Controllers
             }
         }
 
+        [HttpGet("{orderId:int}/names")]
+        [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status200OK, "application/json")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<OrderItemSummary>>> GetOrderItemsNamesAsync(int orderId)
+        {
+            try
+            {
+                var request = new GetOrderItemsNamesQuery(orderId);
+
+                logger.LogInformation("---> Sending query {request} with parameter {parameterName} = {id}...",
+                    request.GetType().Name, nameof(request.OrderId), request.OrderId);
+
+                var orderItemsNames = await mediator.Send(request);
+
+                return Ok(orderItemsNames);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpGet("{orderId:int}/units")]
+        [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status200OK, "application/json")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<OrderItemSummary>>> GetOrderItemsUnitsAsync(int orderId)
+        {
+            try
+            {
+                var request = new GetOrderItemsUnitsQuery(orderId);
+
+                logger.LogInformation("---> Sending query {request} with parameter {parameterName} = {id}...",
+                    request.GetType().Name, nameof(request.OrderId), request.OrderId);
+
+                var orderItemsUnits = await mediator.Send(request);
+                
+                return Ok(orderItemsUnits);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
+        }
+
         [HttpPost]
         [ProducesResponseType(typeof(OrderDetailsDto), StatusCodes.Status201Created, "application/json")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateOrderAsync(CreateOrderCommand createOrderCommand, [FromHeader(Name = RequestHeader)] Guid requestId)
         {
+            if (requestId == Guid.Empty)
+            {
+                return BadRequest();
+            }
+
             var request = new IdentifiedCommand<CreateOrderCommand, OrderDetailsDto>(createOrderCommand, requestId);
 
             logger.LogInformation("---> Sending command: {commandName}...", createOrderCommand.GetType().Name);
