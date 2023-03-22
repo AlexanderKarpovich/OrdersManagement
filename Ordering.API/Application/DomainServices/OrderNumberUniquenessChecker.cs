@@ -11,7 +11,7 @@ namespace Ordering.API.Application.DomainServices
                 throw new ArgumentNullException(nameof(connectionString));
         }
 
-        public bool IsUniqueForProvider(string orderNumber, int providerId)
+        public bool IsUniqueForProvider(string orderNumber, int providerId, int? orderId = null)
         {
             using var connection = new SqlConnection(connectionString);
             connection.Open();
@@ -22,10 +22,10 @@ namespace Ordering.API.Application.DomainServices
                     WHERE Orders.[Number] = @orderNumber 
                     AND Orders.[ProviderId] = @providerId";
 
-            var orderId = connection.QuerySingleOrDefault<int?>(sql, 
+            var id = connection.QuerySingleOrDefault<int?>(sql, 
                 new { orderNumber, providerId });
 
-            return !orderId.HasValue;
+            return !id.HasValue || (orderId.HasValue && id == orderId);
         }
     }
 }
