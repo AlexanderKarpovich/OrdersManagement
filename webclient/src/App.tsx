@@ -1,25 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, NavLink, Navigate, Route, Routes } from "react-router-dom";
+import OrdersPage from "./components/pages/home/OrdersPage";
+import ProvidersPage from "./components/pages/providers/ProvidersPage";
+import CreateOrderPage from './components/pages/create/CreateOrderPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="w-screen bg-black text-white text-end p-2">
+        <div className="text-lg p-2 flex justify-end">
+          <NavLink
+            to='/'
+            className={
+              ({ isActive, isPending }) =>
+                isActive ? "bg-gray-600 rounded px-4 py-2 hover:bg-gray-700" :
+                  isPending ? "text-gray-500" :
+                    "px-4 py-2 hover:text-gray-300"}
+          >
+            Главная
+          </NavLink>
+          <NavLink
+            to='/orders'
+            className={
+              ({ isActive, isPending }) =>
+                isActive ? "bg-gray-600 rounded px-4 py-2 hover:bg-gray-700" :
+                  isPending ? "text-gray-500" :
+                    "px-4 py-2 hover:text-gray-300"}
+            end
+          >
+            Заказы
+          </NavLink>
+          <NavLink
+            to='/providers'
+            className={
+              ({ isActive, isPending }) =>
+                isActive ? "bg-gray-600 rounded px-4 py-2 hover:bg-gray-700" :
+                  isPending ? "text-gray-500" :
+                    "px-4 py-2 hover:text-gray-300"}
+          >
+            Поставщики
+          </NavLink>
+        </div>
+      </div>
+      <Routes>
+        <Route path={'/'} element={<OrdersPage />} />
+        <Route path={'/orders'} element={<OrdersPage />} />
+        <Route path={'/providers'} element={<ProvidersPage />} />
+        <Route path={'/orders/:id'} element={<OrdersPage />} />
+        <Route path={'/orders/:id/edit'} element={<CreateOrderPage />} />
+        <Route path={'/orders/create'} element={<CreateOrderPage />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
