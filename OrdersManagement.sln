@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.UnitTests", "Order
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.API", "Ordering.API\Ordering.API.csproj", "{14AD3ACF-0CB7-4013-A024-D51101D0BF9C}"
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "webclient", "webclient\webclient.esproj", "{5192CDF3-AFF8-4781-8E82-9CBEFE6CB691}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,12 @@ Global
 		{14AD3ACF-0CB7-4013-A024-D51101D0BF9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14AD3ACF-0CB7-4013-A024-D51101D0BF9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14AD3ACF-0CB7-4013-A024-D51101D0BF9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5192CDF3-AFF8-4781-8E82-9CBEFE6CB691}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5192CDF3-AFF8-4781-8E82-9CBEFE6CB691}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5192CDF3-AFF8-4781-8E82-9CBEFE6CB691}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5192CDF3-AFF8-4781-8E82-9CBEFE6CB691}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5192CDF3-AFF8-4781-8E82-9CBEFE6CB691}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5192CDF3-AFF8-4781-8E82-9CBEFE6CB691}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
