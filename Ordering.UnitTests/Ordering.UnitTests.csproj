@@ -26,6 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Ordering.Domain\Ordering.Domain.csproj" />
     <ProjectReference Include="..\Ordering.Infrastructure\Ordering.Infrastructure.csproj" />
+    <ProjectReference Include="..\Ordering.API\Ordering.API.csproj" />
   </ItemGroup>
 
 </Project>
