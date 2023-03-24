@@ -130,7 +130,7 @@ namespace Ordering.API.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(OrderDetailsDto), StatusCodes.Status201Created, "application/json")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateOrderAsync(CreateOrderCommand createOrderCommand, [FromHeader(Name = RequestHeader)] Guid requestId)
+        public async Task<ActionResult> CreateOrderAsync(CreateOrderCommand createOrderCommand, [FromHeader(Name = RequestHeader)] Guid requestId)
         {
             if (requestId == Guid.Empty)
             {
