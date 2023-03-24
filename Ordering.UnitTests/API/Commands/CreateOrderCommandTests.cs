@@ -10,7 +10,7 @@ namespace Ordering.UnitTests.API
         {
             orders = GetDefaultOrders();
             repository = OrderRepositoryMockFactory.Create(orders);
-            logger = GenericLoggerMockFactory.CreateLogger<CreateOrderCommandHandler>();
+            logger = LoggerMockFactory.CreateLogger<CreateOrderCommandHandler>();
         }
 
         [Fact]
