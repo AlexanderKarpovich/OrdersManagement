@@ -1,6 +1,6 @@
 namespace Ordering.UnitTests.API.Mocks
 {
-    public class GenericLoggerMockFactory
+    public class LoggerMockFactory
     {
         public static Mock<ILogger<T>> CreateLogger<T>()
         {
